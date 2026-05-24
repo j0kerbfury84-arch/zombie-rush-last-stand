@@ -202,6 +202,40 @@
   50%      { filter: hue-rotate(-15deg) saturate(1.4); }
 }
 
+/* ===== Fake-3D depth motion ===== */
+@keyframes ground-scroll {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 0 240px, 120px 240px; }
+}
+@keyframes parallax-pan {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes fog-drift {
+  0%   { transform: translate3d(0, 0, 0); opacity: 0.5; }
+  50%  { opacity: 0.85; }
+  100% { transform: translate3d(-30%, 0, 0); opacity: 0.5; }
+}
+/* Z-approach: zombi a horizontól közelít a kamera felé */
+@keyframes approach {
+  0% {
+    transform: translate3d(var(--sx, 0px), -50%, 0) scale(0.32);
+    opacity: 0;
+    filter: blur(2px) brightness(0.5);
+  }
+  8%  { opacity: 1; }
+  60% { filter: blur(0.4px) brightness(0.9); }
+  100% {
+    transform: translate3d(var(--ex, 0px), 55%, 0) scale(1.55);
+    opacity: 1;
+    filter: blur(0) brightness(1.1);
+  }
+}
+@keyframes lurch-sway {
+  0%, 100% { transform: rotate(-2.5deg) translateY(0); }
+  50%      { transform: rotate(2.5deg) translateY(-4px); }
+}
+
 .shake          { animation: screen-shake 0.4s ease-out; }
 .shake-heavy    { animation: screen-shake-heavy 0.7s ease-out; }
 .mult-pop       { animation: mult-pop 0.5s ease-out; }
